@@ -7,14 +7,12 @@ jobs:
     steps:
     - name: Get latest code
       uses: actions/checkout@v2.3.2
-    
-    - name: FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+
+    - name: Upload ftp
+      uses: sebastianpopp/ftp-action@releases/v2
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
+        host: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftps
-        port: 21
-        local-dir: ./public/
-        server-dir: ${{ secrets.SERVER_DIR }}
+        localDir: "public"
+        remoteDir: ${{ secrets.SERVER_DIR }}
